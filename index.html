@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+  <title>Matthew Yarmolinsky Lab 9</title>
+</head>
+<body>
+  <form>
+    <label for="phoneNumber">Enter a phone number (10 digits)</label><br />
+    <input type="text" id="phoneNumber" name="phoneNumber" maxlength="12"/>
+  </form>
+  <script>
+    document.getElementById("phoneNumber").addEventListener("keyup", function(event){
+      switch (event.keyCode) {
+        case 49:
+        case 50:
+        case 51:
+        case 52:
+        case 53:
+        case 54:
+        case 55:
+        case 56:
+        case 57:
+        case 48:
+          // only allow numbers and when we reach 3 numbers and 6 numbers, add a '-'
+          if (document.getElementById("phoneNumber").value.length === 3 || document.getElementById("phoneNumber").value.length === 7) {
+            document.getElementById("phoneNumber").value = document.getElementById("phoneNumber").value + "-";
+          }
+          break;
+        case 8:
+        case 46:
+          // if we are deleting a number, be sure to delete the '-' when necessary
+          if (document.getElementById("phoneNumber").value.length === 3 || document.getElementById("phoneNumber").value.length === 7) {
+            document.getElementById("phoneNumber").value = document.getElementById("phoneNumber").value.substring(0,document.getElementById("phoneNumber").value.length-1);;
+          }
+          break;
+        default:
+          // don't allow any other characters
+          document.getElementById("phoneNumber").value = document.getElementById("phoneNumber").value.substring(0,document.getElementById("phoneNumber").value.length-1);
+      }
+    });
+  </script>
+</body>
